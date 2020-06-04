@@ -58,7 +58,7 @@ Therefore, in this proposal, we will present a new functionality that supports a
 
 # API Design
 
-* Add `usage` function to number format that takes `string` represent the usage, for example: `"person"` . Therefore, the output units will be determined based on:  
+* Add `usage` function to number format that takes `string` represent the usage, for example: `"person"` . Therefore, the **output unit/units** and **the accuracy of the output value** will be determined based on:  
   + locale
   + usage
   + input unit
@@ -72,4 +72,16 @@ Therefore, in this proposal, we will present a new functionality that supports a
     - `"person"` 
   + input unit
     - `"meter"` 
-  + the output unit will be `"foot+inch"` , because those are the used units in the united states for measuring the person heights.
+  + the input value is `1.8 meters` 
+
+``` javascript
+  const inputValue = 1.8;
+
+  console.log(new Intl.NumberFormat('en-US', {
+      unit: 'meter',
+      usage: 'person',
+      unitDisplay: 'long'
+  }).format(inputValue));
+  // expected output: "5 feet and 11 inches"
+  // NOTE: 1.8 meter equals to "5 feet and 10.866141732283452 inches"
+```
