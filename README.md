@@ -16,16 +16,16 @@ Therefore, in this proposal, we will present a new functionality that supports a
 # Requirements
 
 1. For each locale, users should perceive the appropriate units for them.
-	+ Example (Distances): 
-    	- in `en-US` 
-    		* Users, in general, perceive the distances in `miles` 
-    	- in `fr-FR` 
-      		* Users, in general, perceive the distances in `kilometers` 
-	+ Example (Weight): 
-    	- in `en-US` 
-      		* Users, in general, perceive the weight in `pounds` 
-		- in `fr-FR` 
-			* Users, in general, perceive the weight in `kilograms` 
+    + Example (Distances): 
+        - in `en-US` 
+            * Users, in general, perceive the distances in `miles` 
+        - in `fr-FR` 
+              * Users, in general, perceive the distances in `kilometers` 
+    + Example (Weight): 
+        - in `en-US` 
+              * Users, in general, perceive the weight in `pounds` 
+        - in `fr-FR` 
+            * Users, in general, perceive the weight in `kilograms` 
 
 1. In each locale, users tend to select an appropriate unit for **each usage**:
    + Example (Person Height)
