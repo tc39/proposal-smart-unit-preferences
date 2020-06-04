@@ -1,4 +1,4 @@
-# Proposal for Adding `usage` to `Intl.NumberFormat` 
+# Smart Unit Preferences in `Intl.NumberFormat` 
 
 **Stage**: 0
 
@@ -6,7 +6,7 @@
 
 **Author**: Younies Mahmoud [@younies](https://github.com/younies)
 
-**[slide](https://bit.ly/intl-number-format-usage)**
+**[slide](https://bit.ly/smart-unit-preferences-in-intl-number-format)**
 
 # Overview
 
@@ -14,22 +14,23 @@ Representing a quantity of a measurement unit for each locale is considered as a
 Therefore, in this proposal, we will present a new functionality that supports a Locale-aware Measurement Unit Formatting. Also, our design should be ready for future extensions to support inflected language and other customisations.
 
 # Requirements
+
 TBD
 
 # API Design
 
 Add `usage` function to number format that takes `string` represent the usage, for example: `"person"` . Therefore, the output units will be determined based on:
 
-  + locale
-  + usage
-  + input unit
+* locale
+* usage
+* input unit
 
 For example, if the following scenario:
 
-    - locale
-        * `"en-US"` 
-    - usage
-        * `"person"` 
-    - input unit
-        * `"meter"` 
-    - the output unit will be `"foot+inch"` , because those are the used units in the united states for measuring the person heights.
+* locale
+  + `"en-US"` 
+* usage
+  + `"person"` 
+* input unit
+  + `"meter"` 
+* the output unit will be `"foot+inch"` , because those are the used units in the united states for measuring the person heights.
