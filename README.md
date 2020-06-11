@@ -16,7 +16,7 @@ internationalized software.
 In the US and a handful of other countries, temperature is measured in degrees
 Fahrenheit. The rest of the world uses degrees Celsius. Some countries measure
 distances and lengths in miles, yards or feet, and inches, others use
-kilometers, meters, and entimeters. The Scandinavian Mile is a common unit of
+kilometers, meters, and centimeters. The Scandinavian Mile is a common unit of
 length in Norway and Sweden.
 
 The measurement units used also depend on what exactly is being measured (roads,
