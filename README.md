@@ -1,6 +1,6 @@
 # Smart Unit Preferences in `Intl.NumberFormat` 
 
-**Stage**: 0
+**Stage**: 1
 
 **Champion**: Younies Mahmoud [@younies](https://github.com/younies)
 
