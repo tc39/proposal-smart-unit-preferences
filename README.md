@@ -76,7 +76,7 @@ Intl.NumberFormat which will take care of such nuances.
     - Locale
     - Quantity
   - We propose supporting CLDR's unit preferences, see [CLDR's
-    units.xml](https://github.com/unicode-org/cldr/blob/.master/common/supplemental/units.xml).
+    units.xml](https://github.com/unicode-org/cldr/blob/main/common/supplemental/units.xml#:~:text=unitPreferenceData).
 
 * A code example adding a `usage` parameter to
   [Int.NumberFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat):
