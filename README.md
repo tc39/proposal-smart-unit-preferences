@@ -2,68 +2,47 @@
 
 **Stage**: 1
 
-**Champion**: Younies Mahmoud [@younies](https://github.com/younies)
+**Champion**: Ben Allen [@ben-allen](https://github.com/ben-allen)
 
-**Author**: Younies Mahmoud [@younies](https://github.com/younies)
+**Author**: Ben Allen [@ben-allen](https://github.com/ben-allen)
 
-**[slide](https://bit.ly/smart-unit-preferences-in-intl-number-format)**
+**[slides](https://docs.google.com/presentation/d/13ARM2V8v-zdrlywl3CYl_Eqca61vst6N5BVr4b0qmPA/edit?usp=sharing)**
 
 # Overview
 
-Representing measurements in localized units is a common need in
-internationalized software.
+Representing measurements in localized units is a common need when localizing content. Most notably, the United States uses the idiosyncratic Imperial system for many measurements, whereas most of the rest of the world uses the metric system. Likewise, temperatures in the United States are generally measured in degrees Fahrenheit, whereas Celsius is used for most temperature measurements in most of the world.
 
-In the US and a handful of other countries, temperature is measured in degrees
-Fahrenheit. The rest of the world uses degrees Celsius. Some countries measure
-distances and lengths in miles, yards or feet, and inches, others use
-kilometers, meters, and centimeters. The Scandinavian Mile is a common unit of
-length in Norway and Sweden.
+However, properly localizing measurements isn't as simple as "give the U.S. measurements in Imperial, everyone else gets metric." This is because sometimes different measurement scales are used within regions depending on the type of thing that's being measured, the context in which the measurement is used, and on the value of the measurement itself. For example, although Canada largely uses the metric system for measuring lengths, Canadians typically give their heights in feet and inches. Often differently scaled units will be used for varying road distances; for example, countries that use feet and miles will typically give shorter road distances in terms of feet and longer ones in terms of miles or fractions of miles. The degree of precision used when representing distance measurements also varies based on the size of the measurement, with precision generally decreasing as distance increases.
 
-The measurement units used also depend on what exactly is being measured (roads,
-people, precipitation), not only on what kind of measurement it is (length,
-mass, pressure).
+Most often the need for context- and value-dependent measurement localization arises in regions formerly part of the British Empire. However, it is not *exclusive* to these regions. For example, the "Scandinavian mile" is used in Sweden in some contexts. This unit, equivalent to ten kilometers, is frequently used when talking colloquially about distances traveled. However, it is also used in some more formal contexts. Vehicle fuel consumption is most commonly measured in liters per Scandinavian mile, and some Swedish Tax Agency forms use measurements in Scandinavian miles when determining distances traveled for business purposes.
 
-We propose adding locale- and usage-aware measurement formatting to ECMAScript's
-Intl.NumberFormat which will take care of such nuances.
+We propose adding locale- and usage-aware measurement formatting to ECMAScript's Intl.NumberFormat as a framework for providing users with measurements in properly localized scales. We intend to leverage the data available in CLDR's [supplemental file units.xml](https://github.com/unicode-org/cldr/blob/main/common/supplemental/units.xml)
+
 
 # Requirements
 
 1. **Localized:** for each locale, users should be presented with units
    appropriate for them. For example:
    + Length (distance):
-     - `en-US`: miles
+     - `en-US`: miles for distances over half a mile, feet for shorter distances
      - `fr-FR`: kilometers
    + Mass:
      - `en-US`: pounds
      - `fr-FR`: kilograms
-
-1. **Usage:** the preferred measurement unit is dependent on what is being
-   measured. Consider:
-   + Typical length measurements:
-     - `en-US`: miles, feet, inches
-     - `fr-FR`: kilometers, meters, centimeters
+   + Mass of a person:
+     - `en-US`: pounds
+     - `fr-FR`: kilograms
+     - `en-GB`: stone-and-pound
+   + Person-heights:
+     - `en-US`: feet-and-inches
+     - `fr-CA`: feet-and-inches
+     - `fr-FR`: meters-and-centimeters
+     - `de-DE`: centimeters
    + Rainfall (also a "length" measurement):
      - `en-US`: inches
      - `fr-FR`: millimeters
-       - Yearly rainfall is still presented in millimeters, even when
-         measurements exceed 1 meter. Consider the rainfall in Cherrapunji:
-         _"The highest recorded rainfall in a single year was 22,987 mm (905.0
-         in) in 1861."_ (Wikipedia: [Rain - Wettest known
-         locations](https://en.wikipedia.org/wiki/Rain#Wettest_known_locations)).
 
-1. The choice of presentation units also depends on the size of the measurement:
-   + For `en-US`, the length of toddlers is typically presented in **inches**,
-     whereas adults are measured **feet and inches**. (3 feet seems a reasonable
-     threshold.)
-     - *The average newborn is 19.5 inches long and weighs 7.25 pounds.*
-     - *Albert Einstein was 5 feet and 9 inches tall.*
-
-1. The **precision** of the displayed number also depends on usage:
-   + For `en-US`, babies would be measured to a tenth of an inch, whereas
-     measurements presented in feet and inches are rounded to the nearest inch.
-     are measured to the nearest inch only.
-   + In metric countries, heights would be measured in centimeters, or in meters
-     presented with two decimal places.
+All measurements should be at the precision appropriate for measurements of the 
 
 # API Design
 
